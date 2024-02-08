@@ -18,7 +18,9 @@ const CurrencyView = () => {
 		const fetch = async () => {
 			try {
 				const results = await getAllSymbols();
-				//console.log(results.rates);
+				//console.log('hello', Object.keys(results));
+				if (Object.keys(results).includes('message')) return;
+				//console.log('meneekö', results);
 				const currencies = [];
 				Object.entries(results.rates).forEach((e) => {
 					if (e[0] !== 'EUR') {
@@ -36,7 +38,10 @@ const CurrencyView = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log(euros, conversionResult);
+		//console.log(currencyList);
+		if (currencyList.length === 0) return;
+
+		//console.log(euros, conversionResult);
 		if (euros === 0 && conversionResult !== 0) {
 			//console.log('help');
 			return setConversionResult(0);
